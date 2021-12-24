@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  db:
+    container_name: db
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: ryan_admin
+      MYSQL_PASSWORD: ryan_password
+      MYSQL_DATABASE: atelier_db
+    ports:
+      - "3307:3306"
+  app:
+    build: ./
+    ports:
+      - "8080:8080"

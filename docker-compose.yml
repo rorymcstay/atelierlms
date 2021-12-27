@@ -4,6 +4,8 @@ services:
     container_name: db
     image: mysql
     restart: always
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: ryan_admin
@@ -11,7 +13,12 @@ services:
       MYSQL_DATABASE: atelier_db
     ports:
       - "3307:3306"
+    volumes:
+      - atelier_db:/var/lib/mysql
   app:
     build: ./
     ports:
       - "8080:8080"
+
+volumes:
+    atelier_db: {}
